@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Steps Tracker App - User Guide</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #2563eb;
+            --primary-dark: #1e40af;
+            --secondary-color: #10b981;
+            --accent-color: #f59e0b;
+            --text-dark: #1f2937;
+            --text-light: #6b7280;
+            --bg-light: #f9fafb;
+            --bg-white: #ffffff;
+            --border-color: #e5e7eb;
+            --shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.7;
+            color: var(--text-dark);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 2rem 1rem;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: var(--bg-white);
+            border-radius: 16px;
+            box-shadow: var(--shadow-lg);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="rgba(255,255,255,0.1)" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,122.7C672,117,768,139,864,144C960,149,1056,139,1152,122.7C1248,107,1344,85,1392,74.7L1440,64L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>') no-repeat bottom;
+            background-size: cover;
+            opacity: 0.3;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.95;
+            position: relative;
+            z-index: 1;
+        }
+
+        .content {
+            padding: 2.5rem;
+        }
+
+        .toc {
+            background: var(--bg-light);
+            border-left: 4px solid var(--primary-color);
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 8px;
+        }
+
+        .toc h2 {
+            color: var(--primary-color);
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+
+        .toc ol {
+            list-style: none;
+            counter-reset: toc-counter;
+        }
+
+        .toc li {
+            counter-increment: toc-counter;
+            margin: 0.5rem 0;
+        }
+
+        .toc li::before {
+            content: counter(toc-counter) ". ";
+            color: var(--primary-color);
+            font-weight: 600;
+            margin-right: 0.5rem;
+        }
+
+        .toc a {
+            color: var(--text-dark);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .toc a:hover {
+            color: var(--primary-color);
+        }
+
+        h2 {
+            color: var(--primary-dark);
+            font-size: 1.8rem;
+            margin: 2.5rem 0 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid var(--primary-color);
+            position: relative;
+        }
+
+        h2::before {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: var(--secondary-color);
+        }
+
+        h3 {
+            color: var(--primary-color);
+            font-size: 1.4rem;
+            margin: 2rem 0 1rem;
+        }
+
+        h4 {
+            color: var(--text-dark);
+            font-size: 1.1rem;
+            margin: 1.5rem 0 0.75rem;
+            font-weight: 600;
+        }
+
+        p {
+            margin: 1rem 0;
+            color: var(--text-dark);
+        }
+
+        ul, ol {
+            margin: 1rem 0 1rem 2rem;
+        }
+
+        li {
+            margin: 0.5rem 0;
+            color: var(--text-dark);
+        }
+
+        ul ul, ol ol {
+            margin: 0.5rem 0 0.5rem 1.5rem;
+        }
+
+        code {
+            background: var(--bg-light);
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+            color: var(--primary-dark);
+            border: 1px solid var(--border-color);
+        }
+
+        strong {
+            color: var(--text-dark);
+            font-weight: 600;
+        }
+
+        .note {
+            background: #fef3c7;
+            border-left: 4px solid var(--accent-color);
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .note strong {
+            color: #92400e;
+        }
+
+        .feature-box {
+            background: var(--bg-light);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border: 1px solid var(--border-color);
+        }
+
+        .badge {
+            display: inline-block;
+            background: var(--secondary-color);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 12px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-left: 0.5rem;
+        }
+
+        hr {
+            border: none;
+            border-top: 2px solid var(--border-color);
+            margin: 2.5rem 0;
+        }
+
+        .section {
+            scroll-margin-top: 2rem;
+        }
+
+        .footer {
+            background: var(--bg-light);
+            padding: 2rem;
+            text-align: center;
+            color: var(--text-light);
+            border-top: 1px solid var(--border-color);
+        }
+
+        .footer strong {
+            color: var(--primary-color);
+            font-size: 1.2rem;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 1rem 0.5rem;
+            }
+
+            .header h1 {
+                font-size: 1.8rem;
+            }
+
+            .header p {
+                font-size: 1rem;
+            }
+
+            .content {
+                padding: 1.5rem;
+            }
+
+            h2 {
+                font-size: 1.5rem;
+            }
+
+            h3 {
+                font-size: 1.2rem;
+            }
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, #667eea15 0%, #764ba215 100%);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border: 1px solid var(--primary-color);
+        }
+
+        .support-box {
+            background: #ecfdf5;
+            border-left: 4px solid var(--secondary-color);
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .requirement-badge {
+            display: inline-block;
+            background: var(--primary-color);
+            color: white;
+            padding: 0.15rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-left: 0.5rem;
+            vertical-align: middle;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 2rem;
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        .back-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Steps Tracker App</h1>
+            <p>Your Complete User Guide</p>
+        </div>
+
+        <div class="content">
+
+            <div class="highlight-box">
+                <h2 style="border: none; margin-top: 0; padding-bottom: 0;">Welcome to Steps Tracker</h2>
+                <p>Steps Tracker is a corporate wellness application designed to help employees track their daily steps, participate in fundraising challenges, and compete on leaderboards with colleagues.</p>
+            </div>
+
+            <div class="toc">
+                <h2>Table of Contents</h2>
+                <ol>
+                    <li><a href="#getting-started">Getting Started</a></li>
+                    <li><a href="#registration">Registration</a></li>
+                    <li><a href="#permissions-setup">Permissions Setup</a></li>
+                    <li><a href="#dashboard">Dashboard</a></li>
+                    <li><a href="#individual-progress">Individual Progress</a></li>
+                    <li><a href="#settings">Settings</a></li>
+                    <li><a href="#troubleshooting">Troubleshooting</a></li>
+                </ol>
+            </div>
+
+            <hr>
+
+            <section id="getting-started" class="section">
+                <h2>Getting Started</h2>
+                
+                <h3>System Requirements</h3>
+                <ul>
+                    <li><strong>iOS</strong>: iOS 14.0 or later</li>
+                    <li><strong>Android</strong>: Android 14.0 or later with Health Connect support</li>
+                </ul>
+
+                <h3>Installation</h3>
+                <ol>
+                    <li>Download the Steps Tracker app from the App Store (iOS) or Google Play Store (Android)</li>
+                    <li>Install the app on your device</li>
+                    <li>Open the app to begin registration</li>
+                </ol>
+            </section>
+
+            <hr>
+
+            <section id="registration" class="section">
+                <h2>Registration</h2>
+                <p>When you first launch the app, you'll see the Welcome screen.</p>
+
+                <h3>Registration Steps</h3>
+                
+                <div class="feature-box">
+                    <h4>1. Device Information</h4>
+                    <p>The app automatically detects your device information including:</p>
+                    <ul>
+                        <li>Device ID</li>
+                        <li>Device OS version</li>
+                        <li>Device Model</li>
+                    </ul>
+                </div>
+
+                <div class="feature-box">
+                    <h4>2. Employee ID <span class="requirement-badge">REQUIRED</span></h4>
+                    <ul>
+                        <li>Enter your employee ID in the format: <code>K</code> followed by 6 digits</li>
+                        <li>Example: <code>K123456</code></li>
+                        <li>This ID is provided by your employer</li>
+                    </ul>
+                </div>
+
+                <div class="feature-box">
+                    <h4>3. Profile Name <span class="requirement-badge">REQUIRED</span></h4>
+                    <ul>
+                        <li>Enter your full name as you'd like it to appear in the app</li>
+                        <li>This name will be visible on leaderboards</li>
+                    </ul>
+                </div>
+
+                <div class="feature-box">
+                    <h4>4. Complete Registration</h4>
+                    <ul>
+                        <li>Tap the <strong>Register</strong> button to create your account</li>
+                        <li>You'll be prompted to grant health data permissions</li>
+                    </ul>
+                </div>
+            </section>
+
+            <hr>
+
+            <section id="permissions-setup" class="section">
+                <h2>Permissions Setup</h2>
+                <p>To track your steps accurately, the app needs permission to access your device's health data.</p>
+
+                <h3>For iOS Users</h3>
+                <ol>
+                    <li>After registration, you'll be prompted to allow health data access</li>
+                    <li>Go to <strong>Settings</strong> &gt; <strong>Privacy &amp; Security</strong> &gt; <strong>Health</strong></li>
+                    <li>Select <strong>Steps Tracker</strong></li>
+                    <li>Enable <strong>Steps</strong> under "Allow Steps Tracker to Read"</li>
+                    <li>The app will now sync with Apple HealthKit to retrieve your step data</li>
+                </ol>
+
+                <h3>For Android Users</h3>
+                <ol>
+                    <li>After registration, you'll be prompted to allow health data access</li>
+                    <li>The app will redirect you to <strong>Health Connect</strong></li>
+                    <li>Grant permission for Steps Tracker to read <strong>Steps</strong> data</li>
+                    <li>Return to the app to begin tracking</li>
+                </ol>
+
+                <div class="note">
+                    <strong>Note</strong>: The app requires these permissions to function. Without access to health data, step tracking will not work.
+                </div>
+            </section>
+
+            <hr>
+
+            <section id="dashboard" class="section">
+                <h2>Dashboard</h2>
+                <p>The Dashboard provides an overview of the entire team's progress and competitive standings.</p>
+
+                <h3>Features</h3>
+
+                <h4>Total Steps</h4>
+                <ul>
+                    <li>Displays the cumulative steps walked by Kuok Group</li>
+                    <li>Updates in real-time as employees log steps</li>
+                </ul>
+
+                <h4>Fundraising Progress</h4>
+                <ul>
+                    <li><strong>Fund Raised</strong>: Shows the current amount raised based on total steps</li>
+                    <li><strong>Target</strong>: Displays the fundraising goal ($300,000.00)</li>
+                    <li><strong>Conversion Rate</strong>: $0.01 per 10 steps walked</li>
+                    <li>Progress bar indicates percentage toward goal</li>
+                </ul>
+
+                <h4>Your Current Rank</h4>
+                <ul>
+                    <li>Shows your ranking among all participating employees</li>
+                    <li>Displays total number of participants</li>
+                    <li>Updates as you and others accumulate steps</li>
+                </ul>
+
+                <h4>Top 20 Leaderboard</h4>
+                <ul>
+                    <li>View the top 20 step leaders in your organization</li>
+                    <li>Each entry shows:
+                        <ul>
+                            <li>Rank position (with color-coded badges for top 3)</li>
+                            <li>Employee name</li>
+                            <li>Total steps accumulated</li>
+                        </ul>
+                    </li>
+                    <li>Your position is highlighted with "(You)" indicator</li>
+                    <li>Leaderboard updates regularly to reflect current standings</li>
+                </ul>
+
+                <h3>Navigation</h3>
+                <ul>
+                    <li>Access Dashboard by tapping the <strong>Dashboard</strong> icon in the bottom navigation bar</li>
+                </ul>
+            </section>
+
+            <hr>
+
+            <section id="individual-progress" class="section">
+                <h2>Individual Progress</h2>
+                <p>The Individual Progress screen shows your personal step tracking and achievements.</p>
+
+                <h3>Today's Steps</h3>
+                
+                <h4>Main Display</h4>
+                <ul>
+                    <li><strong>Current Steps</strong>: Large display of today's step count</li>
+                    <li><strong>Daily Goal</strong>: Your target steps (default: 10,000)</li>
+                    <li><strong>Progress Bar</strong>: Visual representation of goal completion</li>
+                    <li><strong>Steps to Goal</strong>: Shows remaining steps needed</li>
+                    <li><strong>Percentage</strong>: Displays goal completion percentage</li>
+                </ul>
+
+                <h3>Statistics</h3>
+
+                <h4>My Steps Contribution</h4>
+                <ul>
+                    <li>Shows your cumulative contribution to the team total</li>
+                    <li>All-time step count since registration</li>
+                </ul>
+
+                <h4>Longest Goal Streak</h4>
+                <ul>
+                    <li>Tracks consecutive days you've met your daily goal</li>
+                    <li>Resets to 0 if you miss a day</li>
+                    <li>Encourages consistency in activity</li>
+                </ul>
+
+                <h3>Last 7 Days</h3>
+
+                <h4>Weekly Overview</h4>
+                <ul>
+                    <li>Bar chart showing daily step counts for the past week</li>
+                    <li>Each bar represents one day with the step count displayed</li>
+                    <li>Star icons above each day (for achievements/goal completion)</li>
+                    <li>Dates labeled below each bar</li>
+                    <li>Helps identify patterns and trends in your activity</li>
+                </ul>
+
+                <h3>Features</h3>
+                <ul>
+                    <li><strong>Refresh</strong>: Tap the refresh icon (top right) to sync latest data</li>
+                    <li><strong>Auto-Update</strong>: Data refreshes automatically when you open the tab</li>
+                </ul>
+            </section>
+
+            <hr>
+
+            <section id="settings" class="section">
+                <h2>Settings</h2>
+                <p>Access your account information and app preferences.</p>
+
+                <h3>Employee Profile</h3>
+
+                <h4>Profile Information</h4>
+                <ul>
+                    <li><strong>Profile Name</strong>: Your display name (editable via pencil icon)</li>
+                    <li><strong>Employee ID</strong>: Your unique identifier (not editable)</li>
+                    <li><strong>Registered On</strong>: Date you created your account</li>
+                </ul>
+
+                <h3>Device Information</h3>
+                <p>The app displays your current device details:</p>
+                <ul>
+                    <li><strong>Device ID</strong>: Unique identifier for your device</li>
+                    <li><strong>Device OS</strong>: Your operating system version</li>
+                    <li><strong>Device Model</strong>: Your phone model</li>
+                </ul>
+
+                <div class="note">
+                    <strong>Note</strong>: Device information is used for technical support and troubleshooting.
+                </div>
+
+                <h3>Additional Resources</h3>
+                <ul>
+                    <li><strong>Privacy Policy</strong>: View the app's privacy policy and data handling practices</li>
+                    <li><strong>Terms &amp; Conditions</strong>: Review the terms of service</li>
+                    <li><strong>User Guide</strong>: Access this comprehensive guide within the app</li>
+                </ul>
+
+                <h3>Navigation</h3>
+                <ul>
+                    <li>Access Settings by tapping the <strong>Settings</strong> icon in the bottom navigation bar</li>
+                </ul>
+            </section>
+
+            <hr>
+
+            <section id="troubleshooting" class="section">
+                <h2>Troubleshooting</h2>
+
+                <h3>Steps Not Syncing</h3>
+                
+                <h4>iOS:</h4>
+                <ol>
+                    <li>Open <strong>Settings</strong> &gt; <strong>Privacy &amp; Security</strong> &gt; <strong>Health</strong></li>
+                    <li>Ensure Steps Tracker has permission to read Steps</li>
+                    <li>Check that Apple Health is recording steps (open Health app)</li>
+                    <li>Restart the Steps Tracker app</li>
+                </ol>
+
+                <h4>Android:</h4>
+                <ol>
+                    <li>Open <strong>Health Connect</strong> app</li>
+                    <li>Check that Steps Tracker has permission to read Steps data</li>
+                    <li>Ensure Health Connect is properly recording step data</li>
+                    <li>Restart the Steps Tracker app</li>
+                </ol>
+
+                <h3>Data Not Updating</h3>
+                <ol>
+                    <li>Pull down on the screen to manually refresh</li>
+                    <li>Tap the refresh icon in the top right corner</li>
+                    <li>Check your internet connection</li>
+                    <li>Ensure the app has background refresh enabled in device settings</li>
+                    <li>Force close and reopen the app</li>
+                </ol>
+
+                <h3>Can't See My Rank</h3>
+                <ol>
+                    <li>Ensure you've completed registration</li>
+                    <li>Verify that you have accumulated steps</li>
+                    <li>Check that you have an active internet connection</li>
+                    <li>Rankings update periodically, so wait a few minutes and refresh</li>
+                </ol>
+
+                <h3>Registration Issues</h3>
+                <ol>
+                    <li>Ensure your Employee ID follows the correct format (K followed by 6 digits)</li>
+                    <li>Check that you've entered all required fields</li>
+                    <li>Verify you have a stable internet connection</li>
+                </ol>
+            </section>
+
+            <hr>
+
+            <div class="support-box">
+                <h2 style="border: none; margin-top: 0; padding-bottom: 0; color: var(--secondary-color);">Support</h2>
+                <p>For technical support or questions:</p>
+                <ul>
+                    <li>Contact Group IT department</li>
+                    <li>Refer to the in-app User Guide</li>
+                    <li>Check Privacy Policy and Terms &amp; Conditions for policies</li>
+                </ul>
+            </div>
+
+            <hr>
+
+            <div class="highlight-box">
+                <h2 style="border: none; margin-top: 0; padding-bottom: 0;">Privacy &amp; Data</h2>
+                <p>Your health and activity data is protected:</p>
+                <ul>
+                    <li>Step data is only used for tracking and leaderboard purposes</li>
+                    <li>Personal information is kept confidential</li>
+                    <li>See the Privacy Policy in Settings for complete details</li>
+                    <li>You can withdraw permissions at any time through device settings</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p><strong>Happy Stepping!</strong></p>
+            <p>Every step counts toward your health and Group's fundraising goal.</p>
+        </div>
+    </div>
+</body>
+</html>
