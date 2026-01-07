@@ -35,7 +35,7 @@
         }
 
         .container {
-            max-width: 900px;
+            max-width: 800px;
             margin: 0 auto;
             background: var(--bg-white);
             border-radius: 16px;
@@ -102,12 +102,18 @@
             background: var(--secondary-color);
         }
 
+        h3 {
+            color: var(--primary-color);
+            font-size: 1.4rem;
+            margin: 2rem 0 1rem;
+        }
+
         p {
             margin: 1rem 0;
             color: var(--text-dark);
         }
 
-        ul {
+        ul, ol {
             margin: 1rem 0 1rem 2rem;
         }
 
@@ -119,6 +125,20 @@
         strong {
             color: var(--text-dark);
             font-weight: 600;
+        }
+
+        .note {
+            background: #fef3c7;
+            border-left: 4px solid var(--accent-color);
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        hr {
+            border: none;
+            border-top: 2px solid var(--border-color);
+            margin: 2.5rem 0;
         }
 
         .footer {
@@ -242,7 +262,7 @@
         </div>
 
         <div class="footer">
-            <p>&copy; KGSg Step Up For Good App by Kuok Group Singapore. All rights reserved.</p>
+            <p>&copy; KGSg Step Up For Good App. All rights reserved.</p>
         </div>
     </div>
 </body>
