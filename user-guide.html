@@ -243,6 +243,64 @@
             font-size: 1.2rem;
         }
 
+        .onboarding-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .onboarding-step {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) 260px;
+            gap: 1.5rem;
+            align-items: start;
+            background: var(--bg-light);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.5rem;
+        }
+
+        .onboarding-step h3 {
+            margin-top: 0;
+        }
+
+        .step-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: var(--primary-color);
+            color: white;
+            font-weight: 700;
+            margin-right: 0.75rem;
+            flex-shrink: 0;
+        }
+
+        .step-title {
+            display: flex;
+            align-items: center;
+            font-size: 1.3rem;
+            color: var(--primary-dark);
+            margin-bottom: 0.75rem;
+        }
+
+        .step-image {
+            width: 100%;
+            max-width: 260px;
+            border-radius: 16px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border-color);
+            justify-self: center;
+        }
+
+        .step-details {
+            margin: 0.5rem 0 0;
+            padding-left: 1.25rem;
+        }
+
         @media (max-width: 768px) {
             body {
                 padding: 1rem 0.5rem;
@@ -266,6 +324,14 @@
 
             h3 {
                 font-size: 1.2rem;
+            }
+
+            .onboarding-step {
+                grid-template-columns: 1fr;
+            }
+
+            .step-image {
+                max-width: 320px;
             }
         }
 
@@ -329,6 +395,8 @@
                 <h2>Table of Contents</h2>
                 <ol>
                     <li><a href="#getting-started">Getting Started</a></li>
+                    <li><a href="#ios-onboarding">iOS Onboarding</a></li>
+                    <li><a href="#android-onboarding">Android Onboarding</a></li>
                     <li><a href="#registration">Registration</a></li>
                     <li><a href="#permissions-setup">Permissions Setup</a></li>
                     <li><a href="#dashboard">Dashboard</a></li>
@@ -355,6 +423,216 @@
                     <li>Install the app on your device</li>
                     <li>Open the app to begin registration</li>
                 </ol>
+            </section>
+
+            <hr>
+
+            <section id="ios-onboarding" class="section">
+                <h2>iOS Onboarding</h2>
+                <p>Follow these steps on your iPhone to get started quickly. Each step includes a screenshot for reference.</p>
+
+                <div class="onboarding-steps">
+                    <div class="onboarding-step">
+                        <div>
+                            <div class="step-title"><span class="step-number">1</span>Allow Health Access</div>
+                            <p>Grant the app permission to read your step data from Apple Health.</p>
+                            <ul class="step-details">
+                                <li>Ensure <strong>Steps</strong> is toggled on</li>
+                                <li>Tap <strong>Allow</strong> to continue</li>
+                            </ul>
+                        </div>
+                        <img class="step-image" src="images/ios/1.%20grant%20healthkit%20permission.png" alt="Health Access permission screen on iOS" />
+                    </div>
+
+                    <div class="onboarding-step">
+                        <div>
+                            <div class="step-title"><span class="step-number">2</span>Review Campaign Overview</div>
+                            <p>Read the campaign details, then begin registration.</p>
+                            <ul class="step-details">
+                                <li>Scroll if you want more details</li>
+                                <li>Tap <strong>Let's Start Walking</strong></li>
+                            </ul>
+                        </div>
+                        <img class="step-image" src="images/ios/2.%20registration.png" alt="Campaign overview screen with Let's Start Walking button" />
+                    </div>
+
+                    <div class="onboarding-step">
+                        <div>
+                            <div class="step-title"><span class="step-number">3</span>Set Your Profile Name</div>
+                            <p>Choose the name that will appear on the leaderboard.</p>
+                            <ul class="step-details">
+                                <li>Enter your profile name</li>
+                                <li>Tap <strong>Next</strong></li>
+                            </ul>
+                        </div>
+                        <img class="step-image" src="images/ios/3.%20registration%20-%20name.png" alt="Profile name registration screen" />
+                    </div>
+
+                    <div class="onboarding-step">
+                        <div>
+                            <div class="step-title"><span class="step-number">4</span>Add Email and Signup ID</div>
+                            <p>Provide your email for updates and your Signup ID if available.</p>
+                            <ul class="step-details">
+                                <li>Email is required to complete registration</li>
+                                <li>Signup ID can be left blank to continue as a guest</li>
+                            </ul>
+                        </div>
+                        <img class="step-image" src="images/ios/4.%20registration%20-%20email%20and%20id.png" alt="Email and Signup ID entry screen" />
+                    </div>
+
+                    <div class="onboarding-step">
+                        <div>
+                            <div class="step-title"><span class="step-number">5</span>Check the Dashboard</div>
+                            <p>View total steps, fundraising progress, and the Top 20 leaderboard.</p>
+                            <ul class="step-details">
+                                <li>Your rank updates as you walk more</li>
+                                <li>Tap the refresh icon to sync latest stats</li>
+                            </ul>
+                        </div>
+                        <img class="step-image" src="images/ios/5.%20leaderboard.png" alt="Dashboard with team steps and leaderboard" />
+                    </div>
+
+                    <div class="onboarding-step">
+                        <div>
+                            <div class="step-title"><span class="step-number">6</span>Track Your Progress</div>
+                            <p>Switch to the Individual tab to view daily steps, goal progress, and streaks.</p>
+                            <ul class="step-details">
+                                <li>See how close you are to your goal</li>
+                                <li>Review the last 7 days of activity</li>
+                            </ul>
+                        </div>
+                        <img class="step-image" src="images/ios/6.%20individual.png" alt="My Progress screen showing daily steps" />
+                    </div>
+
+                    <div class="onboarding-step">
+                        <div>
+                            <div class="step-title"><span class="step-number">7</span>Open Settings</div>
+                            <p>Access your profile and device details from the Settings tab.</p>
+                            <ul class="step-details">
+                                <li>Edit your profile name using the pencil icon</li>
+                                <li>Review device information for support</li>
+                            </ul>
+                        </div>
+                        <img class="step-image" src="images/ios/7.%20settings.png" alt="Settings screen with profile and device information" />
+                    </div>
+
+                    <div class="onboarding-step">
+                        <div>
+                            <div class="step-title"><span class="step-number">8</span>Find the User Guide</div>
+                            <p>Open the in-app User Guide anytime for help.</p>
+                            <ul class="step-details">
+                                <li>Scroll to <strong>User Guide</strong></li>
+                                <li>Tap to open the guide in the app</li>
+                            </ul>
+                        </div>
+                        <img class="step-image" src="images/ios/8.%20settings%20-%20user%20guide.png" alt="Settings screen showing the User Guide option" />
+                    </div>
+                </div>
+            </section>
+
+            <hr>
+
+            <section id="android-onboarding" class="section">
+                <h2>Android Onboarding</h2>
+                <p>Follow these steps on your Android device to start tracking steps. Each step includes a screenshot for reference.</p>
+
+                <div class="onboarding-steps">
+                    <div class="onboarding-step">
+                        <div>
+                            <div class="step-title"><span class="step-number">0</span>Install Health Connect</div>
+                            <p>Health Connect is required to sync your step data.</p>
+                            <ul class="step-details">
+                                <li>Install <strong>Health Connect</strong> from Google Play</li>
+                                <li>Return to the app once installed</li>
+                            </ul>
+                        </div>
+                        <img class="step-image" src="images/android/0.%20healthconnect%20pre-requisite.png" alt="Health Connect app listing in Google Play" />
+                    </div>
+
+                    <div class="onboarding-step">
+                        <div>
+                            <div class="step-title"><span class="step-number">1</span>Review Campaign Overview</div>
+                            <p>Read the campaign details and begin your signup.</p>
+                            <ul class="step-details">
+                                <li>Confirm the campaign period and beneficiaries</li>
+                                <li>Scroll to the employee signup section</li>
+                            </ul>
+                        </div>
+                        <img class="step-image" src="images/android/1.%20registration.png" alt="Campaign overview with employee signup form" />
+                    </div>
+
+                    <div class="onboarding-step">
+                        <div>
+                            <div class="step-title"><span class="step-number">2</span>Complete Registration</div>
+                            <p>Enter your Employee ID and Profile Name, then register.</p>
+                            <ul class="step-details">
+                                <li>Employee ID format: <strong>K</strong> followed by 6 digits</li>
+                                <li>Tap <strong>Register</strong> to continue</li>
+                            </ul>
+                        </div>
+                        <img class="step-image" src="images/android/2.registration%20-%20create.png" alt="Employee signup with register button" />
+                    </div>
+
+                    <div class="onboarding-step">
+                        <div>
+                            <div class="step-title"><span class="step-number">3</span>Allow Health Connect Access</div>
+                            <p>Grant permission so the app can read your steps.</p>
+                            <ul class="step-details">
+                                <li>Enable access for <strong>Steps</strong></li>
+                                <li>Tap <strong>Allow</strong> to finish setup</li>
+                            </ul>
+                        </div>
+                        <img class="step-image" src="images/android/3.%20grant%20health%20connect%20permission.png" alt="Health Connect permission screen for steps" />
+                    </div>
+
+                    <div class="onboarding-step">
+                        <div>
+                            <div class="step-title"><span class="step-number">4</span>Check the Dashboard</div>
+                            <p>See total steps, fundraising progress, and the leaderboard.</p>
+                            <ul class="step-details">
+                                <li>Your rank updates as steps sync</li>
+                                <li>Use the refresh icon to update</li>
+                            </ul>
+                        </div>
+                        <img class="step-image" src="images/android/4.%20leadearboard.png" alt="Dashboard with leaderboard and fundraising progress" />
+                    </div>
+
+                    <div class="onboarding-step">
+                        <div>
+                            <div class="step-title"><span class="step-number">5</span>View Your Progress</div>
+                            <p>Go to the Individual tab to track your daily steps and goals.</p>
+                            <ul class="step-details">
+                                <li>Monitor your daily goal progress</li>
+                                <li>Review the last 7 days chart</li>
+                            </ul>
+                        </div>
+                        <img class="step-image" src="images/android/5.%20individual.png" alt="My Progress screen with daily steps" />
+                    </div>
+
+                    <div class="onboarding-step">
+                        <div>
+                            <div class="step-title"><span class="step-number">6</span>Open Settings</div>
+                            <p>Access your employee profile and device information.</p>
+                            <ul class="step-details">
+                                <li>Edit your profile name using the pencil icon</li>
+                                <li>Review device details for support</li>
+                            </ul>
+                        </div>
+                        <img class="step-image" src="images/android/6.%20settings.png" alt="Settings screen with employee profile and device information" />
+                    </div>
+
+                    <div class="onboarding-step">
+                        <div>
+                            <div class="step-title"><span class="step-number">7</span>Find the User Guide</div>
+                            <p>Access the in-app User Guide from Settings.</p>
+                            <ul class="step-details">
+                                <li>Scroll to <strong>User Guide</strong></li>
+                                <li>Tap to open the guide</li>
+                            </ul>
+                        </div>
+                        <img class="step-image" src="images/android/7.%20settings%20-%20user%20guide.png" alt="Settings screen showing User Guide option" />
+                    </div>
+                </div>
             </section>
 
             <hr>
