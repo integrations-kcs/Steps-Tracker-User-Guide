@@ -289,7 +289,6 @@
 
         .step-image {
             width: 100%;
-            max-width: 260px;
             border-radius: 16px;
             box-shadow: var(--shadow);
             border: 1px solid var(--border-color);
@@ -331,7 +330,7 @@
             }
 
             .step-image {
-                max-width: 320px;
+                width: 100%;
             }
         }
 
@@ -907,21 +906,23 @@
                 <h3>Steps Not Syncing</h3>
                 
                 <h4>iOS:</h4>
+                <img class="step-image" src="images/healthkit/1.%20check%20healthkit%20permissions.png" alt="iOS Health permissions screen showing KGSg Step Up For Good access" />
                 <ol>
                     <li>Open <strong>Settings</strong> &gt; <strong>Privacy &amp; Security</strong> &gt; <strong>Health</strong></li>
                     <li>Ensure KGSg Step Up For Good has permission to read Steps</li>
                     <li>Check that Apple Health is recording steps (open Health app)</li>
                     <li>Restart the KGSg Step Up For Good app</li>
                 </ol>
-
+               
                 <h4>Android:</h4>
+                <img class="step-image" src="images/healthconnect/1.%20check%20health%20connect%20permission.png" alt="Health Connect app access screen showing Step Up For Good permissions for steps" />
                 <ol>
                     <li>Open <strong>Health Connect</strong> app</li>
                     <li>Check that KGSg Step Up For Good has permission to read Steps data</li>
                     <li>Ensure Health Connect is properly recording step data</li>
                     <li>Restart the KGSg Step Up For Good app</li>
                 </ol>
-
+               
                 <h3>Data Not Updating</h3>
                 <ol>
                     <li>Pull down on the screen to manually refresh</li>
